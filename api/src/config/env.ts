@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({
+  quiet: true,
+});
 
 type EnvironmentVariables = {
   CLOUDINARY_CLOUD_NAME: string;

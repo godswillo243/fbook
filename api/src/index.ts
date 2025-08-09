@@ -11,10 +11,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  // console.log(req.headers);
+  next();
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
-app.use("/api/messages", messageRoutes)
+app.use("/api/messages", messageRoutes);
 
 app.on("error", (err) => {
   console.error("Server error:", err);

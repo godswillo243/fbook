@@ -25,6 +25,17 @@ export async function createPost(req: Request, res: Response) {
 }
 export async function getPostFeed(req: Request, res: Response) {
   try {
+    const cursor = req.query.cursor;
+    const pageNumber = Number(cursor);
+    const LIMIT = 10;
+    const posts = await PostModel.find()
+      .skip(LIMIT * pageNumber)
+      .limit(LIMIT)
+      .populate("author", "name email avatarUrl");
+    const hasMore = posts.length === LIMIT;
+    res
+      .status(200)
+      .json({ posts, nextCursor: hasMore ? pageNumber + 1 : null });
   } catch (error) {
     res.status(500).json({ message: "Opps! Something went wrong" });
   }

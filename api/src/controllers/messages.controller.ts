@@ -10,6 +10,7 @@ export async function getMessages(
   try {
     const { id } = req.params;
     const targetUser = await UserModel.findById(id);
+    const user = await UserModel.findById(req.userId);
 
     if (!targetUser) {
       return res.status(404).json({ message: "Target user not found" });
@@ -21,21 +22,23 @@ export async function getMessages(
         .json({ message: "You are not friends with this user" });
     }
 
-    const messages = MessageModel.find({
+    const messages = await MessageModel.find({
       $or: [
         {
           recipient: targetUser._id,
-          sender: req.userId,
+          sender: user?._id,
         },
         {
-          recipient: req.userId,
+          recipient: user?._id,
           sender: targetUser._id,
         },
       ],
     });
 
+
     res.status(200).json(messages);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Something went wrong" });
   }
 }

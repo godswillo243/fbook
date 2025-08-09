@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true; /* set as default */
+  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+  color-scheme: light; /* color of browser-provided UI */
+
+  --color-base-100: hsl(168, 30%, 97%);
+  --color-base-200: hsl(168, 30%, 90%);
+  --color-base-300: hsl(168, 30%, 85%);
+  --color-base-content: hsl(168, 70%, 9%);
+  --color-primary: hsl(168, 90%, 40%);
+  --color-primary-content: oklch(98% 0.01 240);
+  --color-secondary: #fcfcfc;
+  --color-secondary-content: #fcfcfc;
+  --color-neutral: oklch(50% 0.05 240);
+  --color-neutral-content: oklch(98% 0.01 240);
+  --color-info: oklch(70% 0.2 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(98% 0.01 140);
+  --color-warning: oklch(80% 0.25 80);
+  --color-warning-content: oklch(20% 0.05 80);
+  --color-error: oklch(65% 0.3 30);
+  --color-error-content: oklch(98% 0.01 30);
+
+  /* border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  /* base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* border size */
+  --border: 1px;
+
+  /* effects */
+  --depth: 1;
+  --noise: 0;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: hsl(168, 76%, 6%);
+  /* background-color: hsl(168, 76%, 42%); */
+  font-family: Roboto, sans-serif;
+}
+
+h3 {
+  @apply text-2xl font-bold;
+}
+
+input[type="text"]  {
+  @apply input min-w-[240px] h-10 px-5 w-full  text-sm focus:outline-none;
+}
+input[type="password"]  {
+  @apply input min-w-[240px] h-10 px-5 w-full  text-sm focus:outline-none;
+}
+input[type="email"]  {
+  @apply input min-w-[240px] h-10 px-5 w-full  text-sm focus:outline-none;
+}
+
+
+label {
+  @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+button {
+  /* @apply bg-primary cursor-pointer text-primary-content font-bold py-2 px-4 rounded-md active:scale-96; */
+  @apply btn;
+}
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+form {
+  @apply flex flex-col gap-4 justify-start items-center;
+}
+/* .link {
+  @apply text-blue-800 underline;
+} */
+.auth-page {
+  @apply flex flex-col gap-4 justify-center items-center w-full h-full;
+}
+
+.auth-form div {
+  @apply flex flex-col gap-2 relative;
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+.front {
+  z-index: 100;
+}
