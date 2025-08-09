@@ -11,21 +11,21 @@ interface FriendRequestCardProps {
 
 function FriendRequestCard({ user }: FriendRequestCardProps) {
   const { status: acceptRequestStatus, mutate: acceptRequestFn } =
-    useAcceptFriendRequest(user._id);
+    useAcceptFriendRequest();
   const { status: rejectRequestStatus, mutate: rejectRequestFn } =
-    useRejectFriendRequest(user._id);
+    useRejectFriendRequest();
   const queryClient = useQueryClient();
   const handleSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["stuff"] });
   };
 
   const handleAcceptRequest = () => {
-    acceptRequestFn(undefined, {
+    acceptRequestFn(user._id, {
       onSuccess: handleSuccess,
     });
   };
   const handleRejectRequest = () => {
-    rejectRequestFn(undefined, {
+    rejectRequestFn(user._id, {
       onSuccess: handleSuccess,
     });
   };
